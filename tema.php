@@ -1,219 +1,121 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Votación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Landing Page HTML | AlexCG Design</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estiloindex.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
+    <!-- formulario -->
+    <link rel="stylesheet" href="css/estilosformulario.css">
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/estilo.css" rel="stylesheet">
-
-
-</head>
-
-<style>
-  
-body{
-
-background-image: url(img/voto.jpg);
-
-
-background-size: 100%;
-
-
-  
-}
-
-
-.contenedor{
-
-border-color: black;
-border:20px;
-margin-top: 20px;
-margin: 50px auto;
-border-radius: 10px;
-margin-right: 20%;
-margin-left: 20%;
-width: 60%;
-height: 500px;
-
-
-
-
-}
-
-.contenedor:hover{
-
-transition: .8s;
-background-color:rgba(0,0,0 ,.2);
-box-shadow:inset;
-   
-
-}
-
-
-
-</style>
-
-
-<body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid"> 
-   
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-     </div>
-
-    <div class="collapse navbar-collapse" id="defaultNavbar1">
-<div class="menu1 col-md-7 col-md-offset-3">
-      <ul class="nav navbar-nav">
-        <li class="active">
-        <li><a href="colaborador.php">Agregar Colaboradores</a></li>
-      <li><a href="tema.php">Agregar Tema</a></li>
-        <li><a href="resultados.php">Resultados</a></li>
-          <li><a href="index.php">Votación</a></li>  
-      </ul>
-
-  </div>
-    </div>
-
-  </div>
-
-</nav>
-
-<?php
-   require_once("conexion.php");
 
     
-		error_reporting(E_ALL ^ E_NOTICE);
-$vacio = isset($_POST['variable']) ? $_POST['variable'] : null ;
-    $acceso = isset($_POST['variable']) ? $_POST['variable'] : null ;
-	 session_start();
-        $num_colab=$_SESSION["num_colab"];
-  
-       if (isset($_POST["nombre_colab"])){
-	 $nombre_colab=$_POST["nombre_colab"];
-	}else{
-	$nombre_colab="";
-	}
+</head>
 
+<body>
 
- if (isset($_POST["nombre_colab"])) {
-    $nombre_colab=$_POST["nombre_colab"];
-}
-     if (isset($_POST["cod_tema"])) {
-    $cod_tema=$_POST["cod_tema"];
-}
-     if (isset($_POST["num_colab"])) {
-    $num_colab=$_POST["num_colab"];
-}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+    <div class="container">
+      <a class="navbar-brand" href="#">Lircay Hub</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button><!-- boton nav -->
 
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="mx-auto"></div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="admin.php">Inicio</a>
+          </li>
 
-if (isset($_POST["boton"])) {
-    $boton=$_POST["boton"];
-	switch ($boton) {
-            
-		case "guardar":                
-             if (empty($num_colab)){
-	?>
-			
-			<script>
-			alert('Ingrese  numero colaborador');
-			</script>
-			<?php
-			
-			break;
-	
-	}
-	if (! is_numeric($num_colab)){
-	?>
-			
-			<script>
-			alert('Por favor colocar  solo numero del colaborador');
-			</script>
-			<?php
-			
-			break;
-	
-	}
-                        if (empty($nombre_colab)){
-	?>
-			
-			<script>
-			alert('ingrese  Nombre');
-			</script>
-			<?php
-			
-			break;
-	
-	}
-         
-          
-		$sql="insert into temas (Titulo,descripcion) values ('$cedula','$nombre') ";
-		$resultado=mysqli_query($cx,$sql);
-		 if ($resultado){
-              	$acceso="aprobado";
-			?>
-			
-	
-			<?php
-			}
-		$cedula="";
-		$usuario="";
-		$nombre="";
-		$clave="";
-		$nivel="";
-	$clavev="";
-		break;
-  }
-}
-
-?>
-
-<div class="contenedor">
-<br>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1 class="text-center"><font color="white" size="7" face="Algerian">Registro de Tema</font></h1>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="resultados.php">Resultados</a>
+          </li>
+      
+          <li class="nav-item">
+            <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </nav>
 
-</div>
-
- <div class="center-block col-md-4 col-xs-8">
-
-<form name ="acceso" action="candidato.php" role="form" method="post">
-  <div class="form-group">
-
-				
-
-					
-  <div class="form-group">
-    <label for="Usuario"><font color="white" size="4">Numero de Tema</font></label>
-    <input type="text" name="cedula" class="form-control" id="cedula"
-           placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="ejemplo_password_1"><font color="white" size="4">Nombre del Tema</font></label>
-    <input type="text" name="nombre" class="form-control" id="nombre" 
-           placeholder="">
-  </div>
-		
-<br> <input type ="submit" class="btn btn-primary" name="boton" Value="guardar">
+    <header class="hero">
+        <div class="textos-hero">
+            <h1>Temas</h1>
+        </div>
+    </header>
 
 
-							 <input type ="submit"  class="btn btn-danger" name="boton" Value="Cancelar">
-</form>
+
+    <footer id="contacto">
+    
+    <div class="wrapper">
+    <div class="title">
+      Ingreso de Nuevo Tema
+    </div>
+
+    
+    <div class="form">
+       <div class="inputfield">
+          <label>Titulo</label>
+          <input type="textarea" class="input" name="titulo">
+       </div>  
+       <div class="inputfield">
+          <label>Descripción</label>
+          <textarea class="textarea" name="descripcion"></textarea>
+       </div>  
+       <div class="inputfield">
+          <label>Categoría</label>
+          <div class="custom_select">
+            <select>
+              <option value="">Ciencia Ficción</option>
+              <option value="male">Romance</option>
+              <option value="female">Terror</option>
+            </select>
+          </div>
+       </div>   
+      <div class="inputfield">
+          <label>Estado</label>
+          <input type="text" class="input">
+       </div> 
+        
+      <div class="inputfield">
+        <input type="submit" value="Guardar" class="btn">
+      </div>
+    </div>
+</div>	
 
 
-</div>
-</div>
+    </footer>
 
-<script src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        var nav = document.querySelector('nav');
 
-<script src="js/bootstrap.js"></script>
+        window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 100) {
+            nav.classList.add('bg-dark', 'shadow');
+        } else {
+            nav.classList.remove('bg-dark', 'shadow');
+        }
+        });
+    </script>
 </body>
+
 </html>

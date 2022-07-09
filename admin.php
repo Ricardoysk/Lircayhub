@@ -1,182 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Votación</title>
-
-
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/estilo.css" rel="stylesheet">
-
-</head>
-
-
-<style>
-
-body{
-
-
-background-image: url(img/voto.jpg);
-
-
-background-size: 100%;
-
-
-}
-	
-.contenedor{
-
-border-color: black;
-border:20px;
-margin-top: 20px;
-margin: 50px auto;
-border-radius: 10px;
-margin-right: 25%;
-margin-left: 25%;
-width: 50%;
-height: 550px;
-
-
-
-
-}
-
-.contenedor:hover{
-
-transition: .8s;
-background-color:rgba(0,0,0 ,.2);
-box-shadow:inset;
-   
-
-}
-
-
-.boton{
-
-float: right;
-
-}
-
-</style>
-
-
-<body>
-
 <?php
-	   require_once("conexion.php");
-$vacio = isset($_POST['variable']) ? $_POST['variable'] : null ;
-    $acceso = isset($_POST['variable']) ? $_POST['variable'] : null ;
-	 session_start();
- if (empty($acceso)) {
-   
-}
- if (isset($_POST["usuario"])) {
-    $usuario=$_POST["usuario"];
-}
 
+    session_start();
 
-
-if (isset($_POST["clave"])) {
-    $clave=$_POST["clave"];
-}
-if (isset($_POST["boton"])) {
-    $boton=$_POST["boton"];
-	switch ($boton) {
-		case "Ingresar":
-            
-		if (empty($usuario) && empty($clave)) {
-			$vacio="si";
-			break;
-		}
-
-
-	    $sql="SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave'";
-	    $resultado=mysqli_query ($cx,$sql);
-	    $datos=mysqli_fetch_array($resultado);
-	    $usu=$datos["usuario"];
-	    $cla=$datos["clave"];
-
-
-		if ($usuario==$usu AND $clave==$cla) {
-			$_SESSION["nombre"]=$datos["nombre"];
-			$_SESSION["nivel"]=$datos["nivel"];
-			$_SESSION["permiso"]="Acceso Permitido";
-		?>
-			<script>
-			alert('ADMINISTADOR');
-			window.location="menu.php";
-			</script>
-
-		<?php
-			//header("location: principal.php"); 
-		}else {
-		   $acceso="denegado";
-		}
-		break;
-
-	}
-}
-
-
+    if(!isset($_SESSION['rol'])){
+        header('location: login.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: login.php');
+        }
+    }
 
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="contenedor">
-	<div class="boton">
-	<a href="votar.php"><button  class="btn btn-danger">X</button></a>
-    </div>
-	<br><br><br><br><br>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1 class="text-center"><font color="white" size="7" face="Algerian">Sistema de Votación</font></h1>
-    </div>
-  </div>
- 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Administrador Lircay Hub</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estiloindex.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-</div>
-
- <div class="center-block col-md-4 col-xs-8">
-<form action="admin.php" role="form" method="post">
-  <div class="form-group">
-    <label for="Usuario"><font color="white">Usuario</font></label>
-    <input type="text" name="usuario" class="form-control" id="usuario"
-           placeholder="Usuario">
-  </div>
-  <div class="form-group">
-    <label for="ejemplo_password_1"><font color="white">Contraseña</font></label>
-    <input type="password" name="clave" class="form-control" id="ejemplo_password_1" 
-           placeholder="Contraseña">
-  </div>
+    <!-- formulario -->
+    <link rel="stylesheet" href="css/estilosformulario.css">
 
 
-   <input type ="submit" class="btn btn-primary" name="boton" Value="Ingresar">
-							 <input type ="submit"  class="btn btn-danger" name="boton" Value="Cancelar">
-</form>
-</div>
-</div>
-</div>
- <div align="center">
-			<?php
- 
-			if ($acceso=="denegado") {
-			  echo "<h1>Acceso denegado.. Usuario o clave erronea...</h1>";
-			}
-			
-			if ($vacio=="si") {
-			  echo "<h1>Debe ingresar Usuario y clave</h1>";
-			}
     
-			?>
-			
-	   </div>
+</head>
 
-<script src="js/jquery-1.11.3.min.js"></script>
+<body>
 
- 
-<script src="js/bootstrap.js"></script>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+    <div class="container">
+      <a class="navbar-brand" href="#">Lircay Hub</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button><!-- boton nav -->
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="mx-auto"></div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="admin.php">Inicio</a>
+          </li>
+      
+          <li class="nav-item">
+            <a class="nav-link text-white" href="tema.php">Tema</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="resultados.php">Resultados</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="login.php?cerrar_session=1">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <header class="hero">
+        <div class="textos-hero">
+            <h1>Bienvenido Administrador</h1>
+        </div>
+    </header>
+
+
+    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        var nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 100) {
+            nav.classList.add('bg-dark', 'shadow');
+        } else {
+            nav.classList.remove('bg-dark', 'shadow');
+        }
+        });
+    </script>
 </body>
+
 </html>

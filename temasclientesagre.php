@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Administrador Lircay Hub</title>
+    <title>Vota Tema</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estiloindex.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -37,13 +37,17 @@
         <div class="mx-auto"></div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-white" href="admin.php">Inicio</a>
+            <a class="nav-link text-white" href="cliente.php">Inicio</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="tema.php">Tema</a>
+            <a class="nav-link text-white" href="temacliente.php">Vota</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link text-white" href="temaspublicos.php">Temas publicados</a>
+          </li>
+      
           <li class="nav-item">
             <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
           </li>
@@ -54,22 +58,47 @@
 
     <header class="hero">
         <div class="textos-hero">
-            <h1>Bienvenido Cliente</h1>
+            <h1>Temas Publicos</h1>
+            <p>Favorito</p>
         </div>
     </header>
 
-    <table class="table table-hover table-striped text-center"border="1" cellspacing=1 cellpadding=2 style="font-size: 8pt">
-      <thead>
-        <tr>
-        <td><font face="verdana"><b>Numero del tema</b></font></td>
-        <td><font face="verdana"><b>Nombre del tema</b></font></td>
-        <td><font face="verdana"><b>Votos</b></font></td>
-        </tr>
-      </thead>
-    <div class="tabla">
 
-    </table>
 
+    <footer id="contacto">
+    
+    <div class="wrapper">
+    <div class="title">
+      Vote por su Tema <br> (Pendiente)
+    </div>
+    <div class="form">
+       <div class="inputfield">
+          <label>Titulo</label>
+          <input type="text" class="input">
+       </div>  
+       <div class="inputfield">
+          <label>Descripción</label>
+          <textarea class="textarea"></textarea>
+       </div>   
+       <div class="inputfield">
+          <label>Categoría</label>
+          <div class="custom_select">
+            <select>
+              <option value="">Ciencia Ficción</option>
+              <option value="male">Romance</option>
+              <option value="female">Terror</option>
+            </select>
+          </div>
+       </div>
+        
+      <div class="inputfield">
+        <input type="submit" value="Guardar" class="btn">
+      </div>
+    </div>
+</div>	
+
+
+    </footer>
 
     <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -87,6 +116,3 @@
 </body>
 
 </html>
-
-
-

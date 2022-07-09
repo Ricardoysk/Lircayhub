@@ -1,3 +1,19 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: login.php');
+    }else{
+        if($_SESSION['rol'] != 2){
+            header('location: login.php');
+        }
+    }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -40,8 +56,16 @@
             <a class="nav-link text-white" href="admin.php">Inicio</a>
           </li>
 
+		      <li class="nav-item">
+            <a class="nav-link text-white" href="temacliente.php">Vota</a>
+          </li>
+
           <li class="nav-item">
-            <a class="nav-link text-white" href="tema.php">Tema</a>
+            <a class="nav-link text-white" href="temasclientesagre.php">Agrega Temas</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="temaspublicos.php">Temas publicados</a>
           </li>
 
           <li class="nav-item">
@@ -57,18 +81,6 @@
             <h1>Bienvenido Cliente</h1>
         </div>
     </header>
-
-    <table class="table table-hover table-striped text-center"border="1" cellspacing=1 cellpadding=2 style="font-size: 8pt">
-      <thead>
-        <tr>
-        <td><font face="verdana"><b>Numero del tema</b></font></td>
-        <td><font face="verdana"><b>Nombre del tema</b></font></td>
-        <td><font face="verdana"><b>Votos</b></font></td>
-        </tr>
-      </thead>
-    <div class="tabla">
-
-    </table>
 
 
     <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
@@ -87,6 +99,3 @@
 </body>
 
 </html>
-
-
-
