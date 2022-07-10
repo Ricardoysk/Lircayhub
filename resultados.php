@@ -1,3 +1,17 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: login.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: login.php');
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -45,7 +59,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
+          <a class="nav-link text-white" href="logout.php?cerrar_session=1">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
@@ -54,15 +68,15 @@
 
     <header class="hero">
         <div class="textos-hero">
-            <h1>Bienvenido Cliente</h1>
+            <h1>Resultados</h1>
         </div>
     </header>
 
     <table class="table table-hover table-striped text-center"border="1" cellspacing=1 cellpadding=2 style="font-size: 8pt">
       <thead>
         <tr>
-        <td><font face="verdana"><b>Numero del tema</b></font></td>
-        <td><font face="verdana"><b>Nombre del tema</b></font></td>
+        <td><font face="verdana"><b>Título</b></font></td>
+        <td><font face="verdana"><b>Descripción</b></font></td>
         <td><font face="verdana"><b>Votos</b></font></td>
         </tr>
       </thead>

@@ -53,7 +53,7 @@
         <div class="mx-auto"></div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-white" href="admin.php">Inicio</a>
+            <a class="nav-link text-white" href="cliente.php">Inicio</a>
           </li>
 
 		      <li class="nav-item">
@@ -69,7 +69,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
+             <a class="nav-link text-white" href="logout.php?cerrar_session=1">Cerrar Sesión</a>
           </li>
         </ul>
       </div>

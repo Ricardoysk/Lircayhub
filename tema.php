@@ -1,3 +1,26 @@
+<?php
+
+  include_once 'conexion.php';
+
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: login.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: login.php');
+        }
+    }
+
+
+    $db = new conexion();
+    $sql = $db->connect()->prepare('SELECT * FROM categoria'); 
+    $queryCategoria = $sql; 
+    $queryCategoria -> execute(); 
+    $resultsCategoria = $queryCategoria -> fetchAll(PDO::FETCH_OBJ);
+?>
+
 
 
 <!DOCTYPE html>
@@ -47,7 +70,7 @@
           </li>
       
           <li class="nav-item">
-            <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
+          <a class="nav-link text-white" href="logout.php?cerrar_session=1">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
@@ -69,35 +92,45 @@
       Ingreso de Nuevo Tema
     </div>
 
-    
-    <div class="form">
+    <form action="insertema.php" method="POST">
+      <div class="form">
        <div class="inputfield">
           <label>Titulo</label>
-          <input type="textarea" class="input" name="titulo">
-       </div>  
+          <input type="text" class="input" name="titulo">
+       </div>
        <div class="inputfield">
           <label>Descripción</label>
           <textarea class="textarea" name="descripcion"></textarea>
        </div>  
        <div class="inputfield">
           <label>Categoría</label>
-          <div class="custom_select">
-            <select>
-              <option value="">Ciencia Ficción</option>
-              <option value="male">Romance</option>
-              <option value="female">Terror</option>
+          <div class="custom_select ">
+            <select name="categoria">
+            <?php
+              foreach($resultsCategoria as $categorias){
+        
+                echo   '<option value="'.$categorias->id.'">'.$categorias->descripcion.'</option>';
+}
+?>
             </select>
           </div>
        </div>   
-      <div class="inputfield">
+       <div class="inputfield">
           <label>Estado</label>
-          <input type="text" class="input">
-       </div> 
+          <div class="custom_select">
+            <select name="estado">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+       </div>
         
       <div class="inputfield">
         <input type="submit" value="Guardar" class="btn">
       </div>
     </div>
+    </form>
 </div>	
 
 

@@ -1,3 +1,18 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: login.php');
+    }else{
+        if($_SESSION['rol'] != 2){
+            header('location: login.php');
+        }
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -49,7 +64,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="index.php">Cerrar Sesión</a>
+          <a class="nav-link text-white" href="logout.php?cerrar_session=1">Cerrar Sesión</a>
           </li>
         </ul>
       </div>

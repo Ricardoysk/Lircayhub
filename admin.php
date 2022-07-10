@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['rol'])){
-        header('location: login.php');
+        header('location: index.php');
     }else{
         if($_SESSION['rol'] != 1){
             header('location: login.php');
@@ -63,7 +63,8 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="login.php?cerrar_session=1">Cerrar Sesión</a>
+            <!-- <small style="float:right"><a href="logout.php">Cerrar la sesión</a></small> -->
+            <a class="nav-link text-white" href="logout.php?cerrar_session=1">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
